@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Payment" max_length="40" name="x_hrda_vehicle_res_payment" type="collection">
+        <element label="Amount" max_length="40" name="amount" type="currency"/>
+        <element display="true" label="Reservation" max_length="32" name="reservation" reference="x_hrda_vehicle_res_vehicle_reservation" type="reference"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Credit Card" sequence="0" value="credit_card"/>
+                <element label="Cash" sequence="1" value="cash"/>
+                <element label="Check" sequence="2" value="check"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="reservation"/>
+        </index>
+    </element>
+</database>

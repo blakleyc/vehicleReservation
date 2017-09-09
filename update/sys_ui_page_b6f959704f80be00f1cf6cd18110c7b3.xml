@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function clickOk(){
+	
+	//Run the Processing Script
+	return true;
+	
+}
+
+function clickCancel(){
+	
+	GlideDialogWindow.get().destroy(); //Close the dialog window
+	
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_hrda_vehicle_res_add_vehicle_reservation_fee.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<b>Select all fees that apply:</b>
+	
+	<g:ui_form>
+		
+		<input type="hidden" id="reservationSysID" name="reservationSysID" value="${sysparm_reservationSysID}"/>
+		<table>
+	
+			<tr style="margin-top: 20px;">
+				<td>
+					<div style="margin-top: 10px;">
+						<g:ui_checkbox id="late_fee" name="late_fee" value="false"/>
+						<label>Late Fee</label>  
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<div style="margin-top: 10px;">
+						<g:ui_checkbox id="fuel" name="fuel" value="false"/>
+						<label>Fuel</label> 
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div style="margin-top: 10px;">
+						<g:ui_checkbox id="clean_interior" name="clean_interior" value="false"/>
+						<label>Clean Interior</label> 
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div style="margin-top: 10px;">
+						<g:ui_checkbox id="wash_exterior" name="wash_exterior" value="false"/>
+						<label>Wash Exterior</label> 
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<div style="margin-top: 10px;">
+						<g:ui_checkbox id="detail" name="detail" value="false"/>
+						<label>Detail</label> 
+					</div>
+				</td>
+			</tr>
+
+			<tr id="dialog_buttons" style="margin-top: 20px;">
+		        <td colspan="2" align="right">
+		           <!-- Pull in 'dialog_buttons_ok_cancel' UI Macro for submit/cancel buttons -->
+		           <g:dialog_buttons_ok_cancel ok="clickOk()" cancel="clickCancel()" />
+		        </td>
+     		</tr>
+
+		</table>
+	</g:ui_form>
+</j:jelly>]]></html>
+        <name>add_vehicle_reservation_fee</name>
+        <processing_script><![CDATA[// If one of the checkboxes were selected
+// Call the server side code to create the fee(s)
+if(late_fee == "true" || fuel == "true" || clean_interior == "true" || wash_exterior == "true" || detail == "true"){
+	
+	var vehicleFees = new VehicleReservation().processFees(late_fee, fuel, clean_interior, wash_exterior, detail, reservationSysID);
+	
+} else {
+	
+	// Add error message when no fee type was selected
+	gs.addErrorMessage("No fee types were selected.");
+	
+}
+
+// Send the user back to the Reservation Record
+response.sendRedirect("x_hrda_vehicle_res_vehicle_reservation.do?sys_id=" + reservationSysID);
+
+]]></processing_script>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>cody.blakley</sys_created_by>
+        <sys_created_on>2016-12-29 20:32:11</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>b6f959704f80be00f1cf6cd18110c7b3</sys_id>
+        <sys_mod_count>67</sys_mod_count>
+        <sys_name>add_vehicle_reservation_fee</sys_name>
+        <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+        <sys_update_name>sys_ui_page_b6f959704f80be00f1cf6cd18110c7b3</sys_update_name>
+        <sys_updated_by>cody.blakley</sys_updated_by>
+        <sys_updated_on>2017-01-10 15:22:04</sys_updated_on>
+    </sys_ui_page>
+</record_update>

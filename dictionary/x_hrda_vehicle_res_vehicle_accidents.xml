@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Vehicle Accidents" max_length="40" name="x_hrda_vehicle_res_vehicle_accidents" type="collection">
+        <element label="Driver" max_length="32" name="driver" reference="x_hrda_vehicle_res_driver" type="reference"/>
+        <element label="Reservation" max_length="32" name="reservation" reference="x_hrda_vehicle_res_vehicle_reservation" type="reference"/>
+        <element choice="1" label="Severity" max_length="40" name="severity" type="choice">
+            <choice>
+                <element label="Minor" sequence="0" value="minor"/>
+                <element label="Major" sequence="1" value="major"/>
+                <element label="Towing Needed" sequence="2" value="towing_needed"/>
+            </choice>
+        </element>
+        <element label="Type" max_length="32" name="type" reference="x_hrda_vehicle_res_accident_type" type="reference"/>
+        <index name="index">
+            <element name="driver"/>
+        </index>
+        <index name="index2">
+            <element name="reservation"/>
+        </index>
+        <index name="index3">
+            <element name="type"/>
+        </index>
+    </element>
+</database>

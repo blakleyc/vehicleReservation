@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sc_cat_item_category">
+    <sc_cat_item_category action="INSERT_OR_UPDATE">
+        <sc_cat_item display_value="Vehicle Evaluation Program">d5086b664fc87240f1cf6cd18110c776</sc_cat_item>
+        <sc_category display_value="Vehicle Reservation">e481b9d60f050300dd4f8f8ce1050e63</sc_category>
+        <sys_class_name>sc_cat_item_category</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-09-09 03:21:26</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>fd12fdd60f050300dd4f8f8ce1050ee1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Vehicle Reservation.Vehicle Evaluation Program</sys_name>
+        <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+        <sys_update_name>sc_cat_item_category_fd12fdd60f050300dd4f8f8ce1050ee1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-09-09 03:21:26</sys_updated_on>
+    </sc_cat_item_category>
+</record_update>

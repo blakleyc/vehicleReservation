@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Vehicle Reservation" max_length="40" name="x_hrda_vehicle_res_vehicle_reservation" type="collection">
+        <element label="Amount Remaining Due" max_length="40" name="amount_remaining_due" type="currency"/>
+        <element default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element label="Number of Passengers" max_length="5" name="number_of_passengers" type="integer"/>
+        <element label="Pick Up Date" max_length="40" name="pick_up_date" type="glide_date_time"/>
+        <element label="Primary Driver" max_length="32" name="primary_driver" reference="x_hrda_vehicle_res_driver" type="reference"/>
+        <element choice="1" label="Reservation Type" max_length="40" name="reservation_type" type="choice">
+            <choice>
+                <element label="Business Trip" sequence="0" value="business_trip"/>
+                <element label="J Staff" sequence="1" value="j_staff"/>
+                <element label="Manager Vehicle" sequence="2" value="manager_vehicle"/>
+                <element label="Department Shuttle" sequence="3" value="department_shuttle"/>
+                <element label="Overseas Assignment" sequence="4" value="overseas_assignment"/>
+                <element label="Relocation" sequence="5" value="relocation"/>
+                <element label="Vehicle Evaluation Program" sequence="6" value="vehicle_evaluation_program"/>
+            </choice>
+        </element>
+        <element label="Return Date" max_length="40" name="return_date" type="glide_date_time"/>
+        <element label="Secondary Drivers" max_length="4000" name="secondary_drivers" reference="x_hrda_vehicle_res_driver" type="glide_list"/>
+        <element choice="1" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element label="Pending" sequence="0" value="Pending"/>
+                <element label="Checked Out" sequence="1" value="Checked Out"/>
+                <element label="Returned" sequence="2" value="Returned"/>
+                <element label="Closed" sequence="3" value="Closed"/>
+                <element label="Cancelled" sequence="4" value="Cancelled"/>
+            </choice>
+        </element>
+        <element label="Total Due" max_length="40" name="total_due" type="currency"/>
+        <element label="Vehicle" max_length="32" name="vehicle" reference="x_hrda_vehicle_res_vehicle" reference_qual="javascript:new VehicleReservation().vehicleRefQual(current.primary_driver)" type="reference" use_reference_qualifier="advanced"/>
+        <index name="index">
+            <element name="primary_driver"/>
+        </index>
+        <index name="index2">
+            <element name="vehicle"/>
+        </index>
+    </element>
+</database>

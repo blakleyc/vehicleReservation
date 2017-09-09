@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="driver_license_number" label="Driver's License Number" language="en" table="x_hrda_vehicle_res_driver">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>driver_license_number</element>
+            <help/>
+            <hint/>
+            <label>Driver's License Number</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_driver</name>
+            <plural>Driver's License Numbers</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2016-12-29 16:48:35</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>b807a0344f00be00f1cf6cd18110c70f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Driver's License Number</sys_name>
+            <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+            <sys_update_name>sys_documentation_x_hrda_vehicle_res_driver_driver_license_number_en</sys_update_name>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2016-12-29 16:48:35</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

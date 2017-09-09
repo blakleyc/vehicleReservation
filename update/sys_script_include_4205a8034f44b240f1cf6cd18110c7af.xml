@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_hrda_vehicle_res.VehicleReservation</api_name>
+        <client_callable>false</client_callable>
+        <description>Vehicle Reservation Application Utils</description>
+        <name>VehicleReservation</name>
+        <script><![CDATA[var VehicleReservation = Class.create();
+VehicleReservation.prototype = {
+    
+	/*********************************************************
+	
+	Vehicle Reservation Utils
+	
+	Functions:
+	initialize -- Line Number: 
+	vehicleRefQual -- Line Number: 
+	pickUpDateValidation -- Line Number: 
+	returnDateValidation -- Line Number: 
+	reservationWindowValidation -- Line Number:
+	cancellationValidation -- Line Number:
+	processFees -- Line Number: 
+	_createFees -- Line Number: 
+	
+	*********************************************************/
+	
+	initialize: function() {
+    },
+	
+	vehicleRefQual : function(driver){
+		
+		// Set Values for the reference qualifer to be returned
+		// and an array of vehicles
+		var refQual = '';
+		var vehicles = [];
+		
+		
+		// Query the Vehicle Reservation to find vehicles that the driver has previously reserved
+		var findVehicles = new GlideRecord('x_hrda_vehicle_res_vehicle_reservation');
+		findVehicles.addQuery('primary_driver', driver);
+		findVehicles.query();
+		
+		
+		// While reservations are found, add the vehicle to the array
+		while(findVehicles.next()){
+			
+			vehicles.push(findVehicles.getValue('vehicle'));
+			
+		}
+		
+		// Build the Reference Qualifier
+		refQual = 'sys_idNOT IN'+vehicles.toString();
+		
+		// Return the Reference Qualifier
+		return refQual;
+		
+	},
+	
+	pickUpDateValidation: function(pickUpDate){
+		
+		/*******************************************
+		
+		Validate the selected Pick Up date
+
+		1 - Pick Up Date may not be more than 90 days from Today's Date
+		
+		If date passes validation, a 0 is returned
+		
+		*******************************************/
+		
+		// Default result is 0
+		var result = 0;
+		
+		// Time Parse Values
+		var timeSection = pickUpDate.split(' ')[1];
+		var hour = parseInt(timeSection.split(':')[0]);
+		var min = parseInt(timeSection.split(':')[1]);
+		
+		// Date Values
+		var ninetyFromToday = gs.daysAgo(-90);
+		
+		// If Pick Up Date is beyond 90
+		if(pickUpDate > ninetyFromToday){
+			
+			result = 1;
+			return result;
+			
+		}
+		
+		
+		// Validate that the Pick up is before 2:00pm
+		if(hour > 14 || (hour == 14 && min > 0)){
+
+			result = 2;
+			return result;
+
+		} 
+		
+		return result;
+	},
+	
+	returnDateValidation: function(returnDate){
+		
+		/*******************************************
+		
+		Validate the selected Return date
+
+		1 - Return Date may not be after 10:00am
+		
+		If date passes validation, a 0 is returned
+		
+		*******************************************/
+		
+		// Default result is 0
+		var result = 0;
+		
+		
+		// Time Parse Values
+		var timeSection = returnDate.split(' ')[1];
+		var hour = parseInt(timeSection.split(':')[0]);
+		var min = parseInt(timeSection.split(':')[1]);
+		
+		// Validate Return Date is before 10:00am
+		if(hour > 10 || (hour == 10 && min > 0)){
+
+			result = 1;
+			return result;
+
+		} 
+		
+		return result;
+	},
+	
+	reservationWindowValidation: function(pickUpDate, returnDate){
+		
+		/**************************************************
+		
+		Validate the reservation window
+
+		1 - Reservation window may not be more than 17 days
+		
+		2 - Return date may not be before the Pick up date
+		
+		If window passes validation, a 0 is returned
+		
+		**************************************************/
+		
+		// Default Result value is 0
+		var result = 0;
+		
+		// Create a datetime object that is 17 days past the pick up date
+		var seventeenDays = new GlideDateTime(pickUpDate.toString());
+		seventeenDays.addDaysLocalTime(17);
+		
+		
+		// Create Date/Time objects for pickup and return dates
+		pickUpDate = new GlideDateTime(pickUpDate.toString());
+		returnDate = new GlideDateTime(returnDate.toString());
+
+		
+		// If the return date is beyond 17 days past the pick up date
+		// return a result of 1 (error)
+		if(returnDate > seventeenDays){
+			
+			result = 1;
+			
+		}
+		
+		// If the return date is before the pick up date
+		// return a result of 2 (error)
+		if(pickUpDate > returnDate){
+			
+			result = 2;
+			
+		}
+		
+		return result;
+		
+	},
+	
+	cancellationValidation : function(pickUpDate){
+		
+		/*********************************************
+		
+		!!Error in the logic here!!
+		
+		Currently checking for cancellations after 12 on the day before the reservation (day before pick up)
+		
+		BUT IT IS NOT checking for cancellations on the DAY OF the reservation (pick up date)
+		
+		*********************************************/
+		
+		var result = 0;
+		
+		// Day Before Pick Up value
+		var dayBefore = new GlideDateTime(pickUpDate.toString());
+		dayBefore.addDaysLocalTime(-1);
+		var dayBeforeDate = dayBefore.getDate();
+		
+		// Today Variables
+		var today = new GlideDateTime().getDisplayValue().toString();
+		var todayDateTime = new GlideDateTime(today);
+		var todayDate = todayDateTime.getDate();
+		var todayTime = today.split(' ')[1];
+		var todayHour = parseInt(todayTime.split(':')[0]);
+		var todayMin = parseInt(todayTime.split(':')[1]);
+
+		// If today is the day before the reservation pick up date
+		if(todayDate.toString() == dayBeforeDate.toString()){
+			
+			// If it is after 12:00pm
+			if(todayHour > 12 || (todayHour == 12 && todayMin > 0)){
+
+				result = 1;
+				return result;
+
+			}
+			
+		}
+		
+		return result;
+	},
+	
+	processFees : function(lateFee, fuel, cleanInterior, washExterior, detail, reservation){
+		
+		/**************************************************
+		
+		Process the manually selected fees
+
+		Inputs: lateFee, fuel, cleanInterior, washExterior, detail, reservation
+		
+		First 5 values are True/False
+		Last value (reservation) contains the sys_id of the Vehicle Reservation record
+		
+		**************************************************/
+		
+		// Create arrays for types of fees
+		var feeTypeArray = ["late_fee", "fuel", "clean_interior", "wash_exterior", "detail"];
+		var feeArray = [lateFee, fuel, cleanInterior, washExterior, detail];
+		
+		
+		// Loop through the fee array values (trues or falses)
+		for (var i = 0; i < feeArray.length; i++){
+			
+			
+			// If the Fee type is True
+			if(feeArray[i] == "true"){
+				
+				try{
+					
+					// Send the Fee Type ("fuel", "clean_interior" etc.) 
+					// And the Reservation sys_id 
+					// to the create fees function
+					this._createFees(feeTypeArray[i], reservation);
+					
+				} catch(err){
+					
+					// Stop processing return an error
+					return false;
+					
+				}
+				
+			}
+			
+		}
+		
+		// Return Confirmation
+		gs.addInfoMessage("Fee(s) created");
+		return true;
+			
+	},
+	
+	_createFees : function(feeType, reservation){
+		
+		// Insert a new fee record
+		var createFee = new GlideRecord('x_hrda_vehicle_res_fee');
+		createFee.reservation = reservation; // Associate with the Reservation Record
+		createFee.type = feeType; // Create the appropriate type of fee
+		createFee.insert();
+		
+	},
+	
+    type: 'VehicleReservation'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>cody.blakley</sys_created_by>
+        <sys_created_on>2017-01-05 16:26:29</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>4205a8034f44b240f1cf6cd18110c7af</sys_id>
+        <sys_mod_count>82</sys_mod_count>
+        <sys_name>VehicleReservation</sys_name>
+        <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+        <sys_update_name>sys_script_include_4205a8034f44b240f1cf6cd18110c7af</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-09-08 21:07:15</sys_updated_on>
+    </sys_script_include>
+</record_update>

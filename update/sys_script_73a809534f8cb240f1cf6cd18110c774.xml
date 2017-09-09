@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_hrda_vehicle_res_vehicle_reservation</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_hrda_vehicle_res_vehicle_reservation">reservation_type=vehicle_evaluation_program^EQ<item endquery="false" field="reservation_type" goto="false" newquery="false" operator="=" or="false" value="vehicle_evaluation_program"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>VEP Twelve reservations maximum per year</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	
+	// Get primary driver's sysID
+	var primaryDriver = current.primary_driver;
+	var numberOfReservations = 0;
+	
+	// Query the Vehicle Reservation Table to get the count of active reservations
+	var countReservations = new GlideAggregate('x_hrda_vehicle_res_vehicle_reservation');
+	countReservations.addQuery('primary_driver', current.primary_driver);
+	countReservations.addQuery('reservation_type', 'vehicle_evaluation_program');
+	countReservations.addQuery('pick_up_date', '>=', gs.beginningOfThisYear());// Check This Year
+	countReservations.addQuery('pick_up_date', '<=', gs.endOfThisYear());// Check This Year
+	countReservations.addAggregate('COUNT');
+	countReservations.query();
+	
+	if(countReservations.next()){
+		
+		numberOfReservations = countReservations.getAggregate('COUNT');
+		
+		if(numberOfReservations >= 12){
+			
+			gs.addErrorMessage("A driver may not have more than 12 vehicle reservations in a calendar year.");
+			current.setAbortAction(true);
+			
+		}
+	}
+	
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>cody.blakley</sys_created_by>
+        <sys_created_on>2017-01-06 13:40:30</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>73a809534f8cb240f1cf6cd18110c774</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>VEP Twelve reservations maximum per year</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+        <sys_update_name>sys_script_73a809534f8cb240f1cf6cd18110c774</sys_update_name>
+        <sys_updated_by>cody.blakley</sys_updated_by>
+        <sys_updated_on>2017-01-11 18:17:50</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=73a809534f8cb240f1cf6cd18110c774"/>
+</record_update>

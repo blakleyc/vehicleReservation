@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Driver" max_length="40" name="x_hrda_vehicle_res_driver" type="collection">
+        <element label="Agreed Policies" max_length="40" name="agreed_policies" type="boolean"/>
+        <element label="Driver's License Number" max_length="20" name="driver_license_number" type="string"/>
+        <element choice="1" label="Driver's License Status" max_length="40" name="driver_license_status" type="choice">
+            <choice>
+                <element label="Current" sequence="0" value="current"/>
+                <element label="Expired" sequence="1" value="expired"/>
+            </choice>
+        </element>
+        <element choice="1" label="Eligibility" max_length="40" name="eligibility" type="choice">
+            <choice>
+                <element label="Eligible" sequence="0" value="eligible"/>
+                <element label="Not Eligible" sequence="1" value="not_eligible"/>
+            </choice>
+        </element>
+        <element label="First Name" max_length="40" name="first_name" type="string"/>
+        <element label="Last Name" max_length="40" name="last_name" type="string"/>
+        <element calculation="(function calculatedFieldValue(current) {&#10;&#10;&#9;// Add your code here&#10;&#9;var name = '';&#10;&#9;if(current.user){&#10;&#9;&#9;name = current.user.first_name+&quot; &quot;+current.user.last_name;&#10;&#9;} else {&#10;&#9;&#9;name = current.first_name+&quot; &quot;+current.last_name;&#10;&#9;}&#10;&#9;return name;  // return the calculated value&#10;&#10;})(current);" display="true" label="Name" max_length="80" name="name" read_only="true" type="string" virtual="true"/>
+        <element label="Phone Number" max_length="40" name="phone_number" type="ph_number"/>
+        <element label="Points" max_length="2" name="points" type="integer"/>
+        <element label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

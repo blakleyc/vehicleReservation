@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element extends="alm_asset" label="Vehicle" max_length="40" name="x_hrda_vehicle_res_vehicle" type="collection">
+        <element label="Color" max_length="40" name="color" type="string"/>
+        <element label="Doors" max_length="2" name="doors" type="integer"/>
+        <element label="Last Checked In" max_length="40" name="last_checked_in" type="glide_date_time"/>
+        <element label="Last Maintenance" max_length="40" name="last_maintenance" type="glide_date_time"/>
+        <element label="Mileage" max_length="7" name="mileage" type="integer"/>
+        <element label="Oil Life" max_length="40" name="oil_life" type="percent_complete"/>
+        <element label="Passengers" max_length="2" name="passengers" type="integer"/>
+        <element choice="1" label="State" max_length="40" name="state" type="choice">
+            <choice>
+                <element label="In Use" value="in_use"/>
+                <element label="Maintenance" value="Maintenance"/>
+                <element label="Out of Commission" value="out_of_commission"/>
+                <element label="Ready" value="ready"/>
+            </choice>
+        </element>
+        <element label="Tag" max_length="8" name="tag" type="string"/>
+        <element display="true" label="VIN Number" max_length="20" name="vin_number" type="string"/>
+        <element attributes="format=none" label="Year" max_length="4" name="year" type="integer"/>
+    </element>
+</database>

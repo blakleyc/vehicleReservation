@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Instance Timer" max_length="40" name="u_instance_timer" type="collection">
+        <element label="Vehicle res jan212017" max_length="100" name="x_hrda_vehicle_res_jan212017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan222017" max_length="100" name="x_hrda_vehicle_res_jan222017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan232017" max_length="100" name="x_hrda_vehicle_res_jan232017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan242017" max_length="100" name="x_hrda_vehicle_res_jan242017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan252017" max_length="100" name="x_hrda_vehicle_res_jan252017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan262017" max_length="100" name="x_hrda_vehicle_res_jan262017" type="747127c1bf3320001875647fcf0739e0"/>
+        <element label="Vehicle res jan272017" max_length="100" name="x_hrda_vehicle_res_jan272017" type="747127c1bf3320001875647fcf0739e0"/>
+    </element>
+</database>

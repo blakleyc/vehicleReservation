@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_hrda_vehicle_res.VehicleReservationAJAX</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>VehicleReservationAJAX</name>
+        <script><![CDATA[var VehicleReservationAJAX = Class.create();
+VehicleReservationAJAX.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	/*********************************************************
+	
+	Vehicle Reservation AJAX
+	
+	Functions:
+	pickUpDateValidation -- Line Number: 
+	returnDateValidation -- Line Number: 
+	reservationWindowValidation -- Line Number: 
+	
+	*********************************************************/
+	
+	pickUpDateValidation: function(){
+		
+		/****************************************************
+		
+		Validate the selected Pick Up date
+
+		1 - Pick Up Date may not be more than 90 days from Today's Date
+		
+		If date passes validation, a 0 is returned
+		
+		Makes call to VehicleReservation Script Include to get the result
+		
+		****************************************************/
+
+		// Date Values
+		var pickUpDate = this.getParameter('sysparm_pick_up_date');
+		
+		// Call to the Util script include
+		var result = new VehicleReservation().pickUpDateValidation(pickUpDate);
+		
+		return result;
+	},
+	
+	returnDateValidation: function(){
+		
+		/******************************************
+		
+		Validate the selected Return date
+
+		1 - Return Date may not be after 10:00am
+		
+		If date passes validation, a 0 is returned
+		
+		******************************************/
+
+		// Date Values
+		var returnDate = this.getParameter('sysparm_return_date');
+		
+		// Call to the Util script include
+		var result = new VehicleReservation().returnDateValidation(returnDate);
+		
+		return result;
+	},
+	
+	reservationWindowValidation: function(){
+		
+		/**********************************************
+		
+		Validate the reservation window
+
+		1 - Reservation window may not be more than 17 days
+		
+		2 - Return date may not be before the pick up date
+		
+		If window passes validation, a 0 is returned
+		
+		Makes call to VehicleReservation Script Include to get the result
+		
+		**********************************************/
+
+		// Date values
+		var pickUpDate = this.getParameter('sysparm_pick_up_date');
+		var returnDate = this.getParameter('sysparm_return_date');
+		
+		// Call to the Util script include
+		var result = new VehicleReservation().reservationWindowValidation(pickUpDate, returnDate);
+		
+		return result;
+		
+	},
+	
+	clientReturnDateValidation: function(){
+		
+		/******************************************
+		
+		Validate the selected Return date
+
+		1 - Return Date may not be after 10:00am
+		
+		Validate the reservation window
+
+		2 - Reservation window may not be more than 17 days
+		
+		3 - Return date may not be before the pick up date
+		
+		If date passes validation, a 0 is returned
+		
+		******************************************/
+		
+		// Date values
+		var pickUpDate = this.getParameter('sysparm_pick_up_date');
+		var returnDate = this.getParameter('sysparm_return_date');
+		
+		var result = 0;
+		
+		// Call to the Util script include
+		var window = new VehicleReservation().reservationWindowValidation(pickUpDate, returnDate);
+		var time = new VehicleReservation().returnDateValidation(returnDate);
+		
+		// Translate the result from the VehicleReservation calls
+		// If window is > 0 an error has occured
+		if(window > 0){
+				
+			// Return the corresponding result
+			if(window == 1){
+				
+				result = 1;
+				
+			}
+			
+			if(window == 2){
+				
+				result = 2;
+				
+			}
+			
+		}
+		
+		// If time is > 0, an error has occured
+		// Return 3
+		if(time > 0){
+			
+			result = 3;
+			
+		}
+		
+		return result;
+			
+	},
+
+	
+    type: 'VehicleReservationAJAX'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>cody.blakley</sys_created_by>
+        <sys_created_on>2017-01-05 15:09:40</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>8473d4c74f04b240f1cf6cd18110c71f</sys_id>
+        <sys_mod_count>57</sys_mod_count>
+        <sys_name>VehicleReservationAJAX</sys_name>
+        <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+        <sys_update_name>sys_script_include_8473d4c74f04b240f1cf6cd18110c71f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-09-08 21:33:56</sys_updated_on>
+    </sys_script_include>
+</record_update>

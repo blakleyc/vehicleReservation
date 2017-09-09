@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Fee" max_length="40" name="x_hrda_vehicle_res_fee" type="collection">
+        <element label="Amount" max_length="40" name="amount" type="currency"/>
+        <element display="true" label="Reservation" max_length="32" name="reservation" reference="x_hrda_vehicle_res_vehicle_reservation" type="reference"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Daily Fee" sequence="0" value="daily_fee"/>
+                <element label="Late Fee" sequence="1" value="late_fee"/>
+                <element label="Fuel" sequence="2" value="fuel"/>
+                <element label="Clean Interior" sequence="3" value="clean_interior"/>
+                <element label="Wash Exterior" sequence="4" value="wash_exterior"/>
+                <element label="Detail" sequence="5" value="detail"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="reservation"/>
+        </index>
+    </element>
+</database>

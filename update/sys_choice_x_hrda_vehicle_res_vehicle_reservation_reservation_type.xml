@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="reservation_type" table="x_hrda_vehicle_res_vehicle_reservation" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Business Trip</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>0</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:16:20</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>2ce66fae4f887240f1cf6cd18110c7f5</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:16:38</sys_updated_on>
+            <value>business_trip</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>J Staff</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>1</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:16:42</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>42e62f2e4f887240f1cf6cd18110c773</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:16:56</sys_updated_on>
+            <value>j_staff</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Manager Vehicle</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>2</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:17:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1bf627664fc87240f1cf6cd18110c767</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:17:27</sys_updated_on>
+            <value>manager_vehicle</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Department Shuttle</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>3</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:17:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f3072b624fc87240f1cf6cd18110c78e</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:19:26</sys_updated_on>
+            <value>department_shuttle</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Overseas Assignment</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>4</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:17:52</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>cb276bae4f887240f1cf6cd18110c71b</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:18:15</sys_updated_on>
+            <value>overseas_assignment</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Relocation</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>5</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:18:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e4472b664fc87240f1cf6cd18110c70a</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:18:35</sys_updated_on>
+            <value>relocation</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>reservation_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Vehicle Evaluation Program</label>
+            <language>en</language>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sequence>6</sequence>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:18:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>875727664fc87240f1cf6cd18110c768</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:19:03</sys_updated_on>
+            <value>vehicle_evaluation_program</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>reservation_type</element>
+            <name>x_hrda_vehicle_res_vehicle_reservation</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>cody.blakley</sys_created_by>
+            <sys_created_on>2017-01-04 17:16:20</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>d9fb45820f103200dd4f8f8ce1050e0a</sys_id>
+            <sys_mod_count>30</sys_mod_count>
+            <sys_name>reservation_type</sys_name>
+            <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
+            <sys_update_name>sys_choice_x_hrda_vehicle_res_vehicle_reservation_reservation_type</sys_update_name>
+            <sys_updated_by>cody.blakley</sys_updated_by>
+            <sys_updated_on>2017-01-04 17:19:26</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>
