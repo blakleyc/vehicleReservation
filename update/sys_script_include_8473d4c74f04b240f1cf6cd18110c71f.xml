@@ -18,6 +18,7 @@ VehicleReservationAJAX.prototype = Object.extendsObject(global.AbstractAjaxProce
 	pickUpDateValidation -- Line Number: 
 	returnDateValidation -- Line Number: 
 	reservationWindowValidation -- Line Number: 
+	clientReturnDateValidation -- Line Number:
 	
 	*********************************************************/
 	
@@ -159,7 +160,7 @@ VehicleReservationAJAX.prototype = Object.extendsObject(global.AbstractAjaxProce
         <sys_created_on>2017-01-05 15:09:40</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>8473d4c74f04b240f1cf6cd18110c71f</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>58</sys_mod_count>
         <sys_name>VehicleReservationAJAX</sys_name>
         <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
         <sys_policy>read</sys_policy>
@@ -167,6 +168,6 @@ VehicleReservationAJAX.prototype = Object.extendsObject(global.AbstractAjaxProce
         <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
         <sys_update_name>sys_script_include_8473d4c74f04b240f1cf6cd18110c71f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-09-08 21:33:56</sys_updated_on>
+        <sys_updated_on>2017-09-09 03:29:31</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -66,6 +66,8 @@ VehicleReservation.prototype = {
 
 		1 - Pick Up Date may not be more than 90 days from Today's Date
 		
+		2 - Pick Up Date must be before 2:00pm
+		
 		If date passes validation, a 0 is returned
 		
 		*******************************************/
@@ -289,7 +291,7 @@ VehicleReservation.prototype = {
         <sys_created_on>2017-01-05 16:26:29</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>4205a8034f44b240f1cf6cd18110c7af</sys_id>
-        <sys_mod_count>82</sys_mod_count>
+        <sys_mod_count>83</sys_mod_count>
         <sys_name>VehicleReservation</sys_name>
         <sys_package display_value="Vehicle Reservation" source="x_hrda_vehicle_res">abde54bc4fcc7e00f1cf6cd18110c713</sys_package>
         <sys_policy>read</sys_policy>
@@ -297,6 +299,6 @@ VehicleReservation.prototype = {
         <sys_scope display_value="Vehicle Reservation">abde54bc4fcc7e00f1cf6cd18110c713</sys_scope>
         <sys_update_name>sys_script_include_4205a8034f44b240f1cf6cd18110c7af</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-09-08 21:07:15</sys_updated_on>
+        <sys_updated_on>2017-09-09 03:29:44</sys_updated_on>
     </sys_script_include>
 </record_update>
